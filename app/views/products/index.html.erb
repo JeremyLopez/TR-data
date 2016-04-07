@@ -1,19 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Products</h1>
-<h1 class="title"></h1>
 
-<div>
-	<%= form_tag products_path, method: 'get' do %>
-		<tr id="product_category"><%= text_field_tag :product_code, params[:category] %></tr>
-		<tr id="product_name"><%= text_field_tag :product_code, params[:name] %></tr>
-		<tr id="product_price"><%= text_field_tag :product_code, params[:price] %></tr>
-	<% end %>
-</div>
-
-<%= console %>
-
-<table id="product_table">
+<table id="products" data-source="<%= products_url(format: "json") %>">
   <thead>
     <tr>
       <th>Name</th>
