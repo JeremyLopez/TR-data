@@ -1,0 +1,36 @@
+<%= form_tag(drugs_path) do %>
+	<%= label_tag "Results per page" %>
+	<%= number_field_tag :results_per_page, params[:results_per_page] %>
+	<%= submit_tag "Update", class: 'btn btn-primary' %>
+<% end %>
+
+
+<div class="full-width text-center size-125">
+	<%= will_paginate @drugs %>
+</div>
+
+
+<div class="form-inline search-form text-center">
+	<div class="form-group search-group">
+		<%= form_tag(drugs_path, :method => "get") do %>
+			<%= text_field_tag :search, params[:search], placeholder: "Target Name" %>
+		<%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
+
+
+<% @drugs.each do |drug| %>
+      <tr>
+				<% @drug_cols.each do |col| %>
+					<% if col == "DRUG_NAME" %>
+				<td><%= link_to drug[col], drug_path(drug[:id]) %></td>
+					<% else %>
+						<td><%= drug[col] %></td>
+					<% end %>
+				<% end %>
+        <td><%= link_to 'Show', drug %></td>
+        <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
+        <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>

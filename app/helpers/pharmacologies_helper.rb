@@ -1,0 +1,2 @@
+module PharmacologiesHelper
+end

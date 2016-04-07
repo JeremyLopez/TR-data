@@ -1,0 +1,63 @@
+// Place all the styles related to the drugs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.full-width {
+	width: 100%;
+}
+
+.drug-info {
+	position: absolute;
+	left: 275px;
+}
+
+.indent {
+	margin-left: 1em;
+}
+
+.size-125 {
+	font-size: 1.25em;
+}
+
+.search-form {
+	width: 50%;
+	margin-left: 25%;
+}
+
+.search-group {
+	width:100%;
+	
+	input {
+		height: 2.5em;
+		border-radius: 0.5em;
+	}
+	
+	input#search {
+		width: 75%;
+		border: 2px solid #ddd;
+		text-indent: 0.5em;
+	}
+}
+
+th[data-sorted-direction="descending"] {
+	color: red;
+}
+
+th[data-sorted-direction="ascending"] {
+	color: green;
+}
+
+
+
+
+
+.nav-tabs {
+	margin-bottom: 1em !important;
+}
+
+.tab-content {
+//	border-right: 1px solid #ddd;
+//	border-left: 1px solid #ddd;
+//	border-bottom: 1px solid #ddd;
+//	border-radius: 0 0 .5em .5em;
+}

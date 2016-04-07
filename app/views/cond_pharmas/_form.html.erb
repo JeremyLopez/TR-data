@@ -1,0 +1,17 @@
+<%= form_for(@cond_pharma) do |f| %>
+  <% if @cond_pharma.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cond_pharma.errors.count, "error") %> prohibited this cond_pharma from being saved:</h2>
+
+      <ul>
+      <% @cond_pharma.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

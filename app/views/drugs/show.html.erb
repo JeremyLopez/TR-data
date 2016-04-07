@@ -1,0 +1,108 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+	<h1><%= @drug[:DRUG_NAME] %> <small><%= @drug[:TARGET_NAME] %></small></h1>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" id="myTabs" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Information</a></li>
+	<li role="presentation" id="myTabs"><a href="#experiments" aria-controls="experiments" role="tab" data-toggle="tab">Target Pharmacology</a></li>
+	<li role="presentation" id="myTabs"><a href="#conditional-pharma" aria-controls="conditional-pharma" role="tab" data-toggle="tab">Conditional Pharmacology</a></li>
+	<li role="presentation" id="myTabs"><a href="#patents" aria-controls="patents" role="tab" data-toggle="tab">Patents</a></li>
+</ul>
+
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="info">
+		<div class="drug-info-container">
+			<% @drug_cols.each do |col| %>
+				<p class="indent"><strong><%= col %></strong>:<span class="drug-info"><%= @drug[col] %></span></p>
+			<% end %>
+		</div>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="experiments">
+		<table class="table table-pharma table-hover text-center">
+			<thead>
+				<tr>
+					<% @pharma_cols.each do |col| %>
+						<th style="text-align: center"><%= col %></th>
+					<% end %>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @drug.pharmacologies.each do |pharmacology| %>
+					<tr>
+						<% @pharma_cols.each do |col| %>
+							<td><%= pharmacology[col] %></td>
+						<% end %>
+						<td><%= link_to 'Show', pharmacology %></td>
+						<td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
+						<td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="conditional-pharma">
+		<table class="table table-pharma table-hover text-center">
+			<thead>
+				<tr>
+					<% @pharma_cols.each do |col| %>
+						<th style="text-align: center"><%= col %></th>
+					<% end %>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @drug.cond_pharmas.each do |pharmacology| %>
+					<tr>
+						<% @pharma_cols.each do |col| %>
+							<td><%= pharmacology[col] %></td>
+						<% end %>
+						<td><%= link_to 'Show', pharmacology %></td>
+						<td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
+						<td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="patents">
+		<table class="table table-pharma table-hover text-center">
+			<thead>
+				<tr>
+					<% @patent_cols.each do |col| %>
+						<th style="text-align: center"><%= col %></th>
+					<% end %>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+					<th style="text-align: center">Tasks</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @drug.patents.each do |pharmacology| %>
+					<tr>
+						<% @patent_cols.each do |col| %>
+							<td><%= pharmacology[col] %></td>
+						<% end %>
+						<td><%= link_to 'Show', pharmacology %></td>
+						<td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
+						<td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<%= link_to 'Edit', edit_drug_path(@drug) %> |
+<%= link_to 'Back', drugs_path %>

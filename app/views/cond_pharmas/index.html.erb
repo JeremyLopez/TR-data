@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Conditional Pharmacologies</h1>
+
+<div class="form-inline search-form text-center">
+	<div class="form-group search-group">
+		<%= form_tag(cond_pharmas_path, :method => "get") do %>
+			<%= text_field_tag :search, params[:search], placeholder: "Target Name" %>
+			<%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
+
+<div class="full-width text-center size-125">
+	<%= will_paginate @cond_pharmas %>
+</div>
+
+<table class="table table-pharma table-hover text-center">
+  <thead>
+    <tr>
+			<% @pharma_cols.each do |col| %>
+				<th style="text-align: center"><%= col %></th>
+			<% end %>
+<!--
+     	<th style="text-align: center">TR_TARGET_ID</th>
+     	<th style="text-align: center">Target Name</th>
+     	<th style="text-align: center">DRUG_ID</th>
+     	<th style="text-align: center">Drug Name</th>
+-->
+      <th style="text-align: center">Tasks</th>
+      <th style="text-align: center">Tasks</th>
+      <th style="text-align: center">Tasks</th>
+    </tr>
+	</thead>
+
+  <tbody>
+		<% @cond_pharmas.each do |pharmacology| %>
+      <tr>
+				<% @pharma_cols.each do |col| %>
+					<td><%= pharmacology[col] %></td>
+				<% end %>
+        <td><%= link_to 'Show', pharmacology %></td>
+        <td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
+        <td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="full-width text-center size-125">
+	<%= will_paginate @cond_pharmas %>
+</div>
+
+<h2>Import Conditional Pharmacology</h2>
+
+<%= form_tag import_cond_pharmas_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+
+<%= link_to 'New Cond pharma', new_cond_pharma_path %>
