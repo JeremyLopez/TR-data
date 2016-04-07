@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def index
 		respond_to do |format|
 			format.html
-			format.json { render json: Product.all } #ProductsDatatable.new(view_context) }
+			format.json { render json: ProductsDatatable.new(view_context) }
 		end
 	end
 
