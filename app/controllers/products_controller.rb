@@ -4,10 +4,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-#		respond_to do |format|
-#			format.html
-#			format.json { render json: ProductsDatatable.new(view_context) }
-#		end
+		respond_to do |format|
+			format.html
+			format.json { render json: Product.all } #ProductsDatatable.new(view_context) }
+		end
 	end
 
   # GET /products/1
