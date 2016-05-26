@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.2'
-gem 'sqlite3'
 gem 'roo'
 gem 'rcdk', '~> 0.3.0'
 gem 'rubyzip'
@@ -14,6 +13,8 @@ gem 'ajax-datatables-rails', '0.1.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'faker',                '1.4.2'
+gem 'yaml_db'
+gem 'mysql2', '~> 0.3.18'
 
 gem 'jquery-rails'
 gem 'turbolinks'

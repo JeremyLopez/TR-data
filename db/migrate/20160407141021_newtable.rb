@@ -1,16 +1,16 @@
 class Newtable < ActiveRecord::Migration
   def change
-		drop_table :cond_pharmas
-		drop_table :cond_pharma
+#		drop_table :cond_pharmas
+#		drop_table :cond_pharma
 		
 		create_table :cond_pharmas do |t|
       t.timestamps null: false
-			t.integer :TR_TARGET_ID, :limit => 20
+			t.integer :TR_TARGET_ID
 			t.string :TARGET_NAME
-			t.integer :DRUG_ID, :limit => 20
+			t.integer :DRUG_ID
 			t.string :DRUG_NAME
-			t.integer :PHARM_RESULT_ID, :limit => 20
-			t.integer :PHARM_EXP_ID, :limit => 20
+			t.integer :PHARM_RESULT_ID
+			t.integer :PHARM_EXP_ID
 			t.string :TARGET_CONDITION_TOXICITY_TYPE
 			t.string :SYSTEM
 			t.string :CONDITION_ACTIVITY_TYPE_VALUE

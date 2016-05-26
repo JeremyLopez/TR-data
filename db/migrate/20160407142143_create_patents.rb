@@ -1,12 +1,12 @@
 class CreatePatents < ActiveRecord::Migration
   def change
     create_table :patents do |t|
-			t.integer :TR_TARGET_ID, :limit => 20
+			t.integer :TR_TARGET_ID
 			t.string :TARGET_NAME
-			t.integer :DRUG_ID, :limit => 20
+			t.integer :DRUG_ID
 			t.string :DRUG_NAME
-			t.integer :INTEGRITY_PATENT_ID, :limit => 20
-			t.string :PATENT_TITLE, :limit => 100
+			t.integer :INTEGRITY_PATENT_ID
+			t.string :PATENT_TITLE
 			t.string :PATENT_NUMBER
 			t.string :PATENT_PUBLICATION
 			t.string :APPLICANT

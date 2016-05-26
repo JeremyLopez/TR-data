@@ -14,123 +14,115 @@
 ActiveRecord::Schema.define(version: 20160407143649) do
 
   create_table "cond_pharmas", force: :cascade do |t|
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.integer  "TR_TARGET_ID",                   limit: 20
-    t.string   "TARGET_NAME"
-    t.integer  "DRUG_ID",                        limit: 20
-    t.string   "DRUG_NAME"
-    t.integer  "PHARM_RESULT_ID",                limit: 20
-    t.integer  "PHARM_EXP_ID",                   limit: 20
-    t.string   "TARGET_CONDITION_TOXICITY_TYPE"
-    t.string   "SYSTEM"
-    t.string   "CONDITION_ACTIVITY_TYPE_VALUE"
-    t.string   "EFFECT"
-    t.string   "PHARMACOLOGICAL_ACTIVITY"
-    t.string   "MATERIAL"
-    t.string   "METHOD"
-    t.string   "PARAMETER"
-    t.string   "OPERATOR"
-    t.string   "VALUE"
-    t.string   "UNIT"
-    t.string   "VARIANCE"
-    t.string   "MODEL"
-    t.string   "SOURCE_TYPE"
-    t.string   "SOURCE_TITLE"
-    t.string   "SOURCE_ID"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "TR_TARGET_ID",                   limit: 4
+    t.string   "TARGET_NAME",                    limit: 255
+    t.integer  "DRUG_ID",                        limit: 4
+    t.string   "DRUG_NAME",                      limit: 255
+    t.integer  "PHARM_RESULT_ID",                limit: 4
+    t.integer  "PHARM_EXP_ID",                   limit: 4
+    t.string   "TARGET_CONDITION_TOXICITY_TYPE", limit: 255
+    t.string   "SYSTEM",                         limit: 255
+    t.string   "CONDITION_ACTIVITY_TYPE_VALUE",  limit: 255
+    t.string   "EFFECT",                         limit: 255
+    t.string   "PHARMACOLOGICAL_ACTIVITY",       limit: 255
+    t.string   "MATERIAL",                       limit: 255
+    t.string   "METHOD",                         limit: 255
+    t.string   "PARAMETER",                      limit: 255
+    t.string   "OPERATOR",                       limit: 255
+    t.string   "VALUE",                          limit: 255
+    t.string   "UNIT",                           limit: 255
+    t.string   "VARIANCE",                       limit: 255
+    t.string   "MODEL",                          limit: 255
+    t.string   "SOURCE_TYPE",                    limit: 255
+    t.string   "SOURCE_TITLE",                   limit: 255
+    t.string   "SOURCE_ID",                      limit: 255
   end
 
-  add_index "cond_pharmas", ["DRUG_ID"], name: "index_cond_pharmas_on_DRUG_ID"
-  add_index "cond_pharmas", ["DRUG_NAME"], name: "index_cond_pharmas_on_DRUG_NAME"
-  add_index "cond_pharmas", ["PHARM_RESULT_ID"], name: "index_cond_pharmas_on_PHARM_RESULT_ID"
-  add_index "cond_pharmas", ["TARGET_NAME"], name: "index_cond_pharmas_on_TARGET_NAME"
+  add_index "cond_pharmas", ["DRUG_ID"], name: "index_cond_pharmas_on_DRUG_ID", using: :btree
+  add_index "cond_pharmas", ["DRUG_NAME"], name: "index_cond_pharmas_on_DRUG_NAME", using: :btree
+  add_index "cond_pharmas", ["PHARM_RESULT_ID"], name: "index_cond_pharmas_on_PHARM_RESULT_ID", using: :btree
+  add_index "cond_pharmas", ["TARGET_NAME"], name: "index_cond_pharmas_on_TARGET_NAME", using: :btree
 
   create_table "drugs", force: :cascade do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "TR_TARGET_ID",             limit: 20
-    t.integer  "DRUG_ID",                  limit: 20
-    t.integer  "INTEGRITY_PATENT_ID",      limit: 20
-    t.string   "TARGET_NAME"
-    t.string   "DRUG_NAME"
-    t.string   "PRODUCT_CATEGORY"
-    t.string   "MOLECULAR_MECHANISM"
-    t.string   "CELLULAR_MECHANISM"
-    t.string   "UNDER_ACTIVE_DEVELOPMENT"
-    t.string   "HIGHEST_PHASE"
-    t.string   "INACTIVE_CONDITIONS"
-    t.string   "ORIGINATOR_ORGANIZATION"
-    t.string   "INACTIVE_ORGANIZATION"
-    t.string   "ACTIVE_CONDITIONS"
-    t.string   "SMILES"
-    t.string   "SEQUENCE"
-    t.string   "CAS_NUMBER"
-    t.string   "CORTELLIS_ID"
-    t.string   "ACTIVE_ORGANIZATION"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "TR_TARGET_ID",             limit: 4
+    t.integer  "DRUG_ID",                  limit: 4
+    t.integer  "INTEGRITY_PATENT_ID",      limit: 4
+    t.string   "TARGET_NAME",              limit: 255
+    t.string   "DRUG_NAME",                limit: 255
+    t.string   "PRODUCT_CATEGORY",         limit: 255
+    t.string   "MOLECULAR_MECHANISM",      limit: 255
+    t.string   "CELLULAR_MECHANISM",       limit: 255
+    t.string   "UNDER_ACTIVE_DEVELOPMENT", limit: 255
+    t.string   "HIGHEST_PHASE",            limit: 255
+    t.string   "INACTIVE_CONDITIONS",      limit: 255
+    t.string   "ORIGINATOR_ORGANIZATION",  limit: 255
+    t.string   "INACTIVE_ORGANIZATION",    limit: 255
+    t.string   "ACTIVE_CONDITIONS",        limit: 255
+    t.string   "SMILES",                   limit: 255
+    t.string   "SEQUENCE",                 limit: 255
+    t.string   "CAS_NUMBER",               limit: 255
+    t.string   "CORTELLIS_ID",             limit: 255
+    t.string   "ACTIVE_ORGANIZATION",      limit: 255
   end
 
-  add_index "drugs", ["DRUG_ID"], name: "index_drugs_on_DRUG_ID"
-  add_index "drugs", ["DRUG_NAME"], name: "index_drugs_on_DRUG_NAME"
-  add_index "drugs", ["INTEGRITY_PATENT_ID"], name: "index_drugs_on_INTEGRITY_PATENT_ID"
-  add_index "drugs", ["TARGET_NAME"], name: "index_drugs_on_TARGET_NAME"
-  add_index "drugs", ["TR_TARGET_ID"], name: "index_drugs_on_TR_TARGET_ID"
+  add_index "drugs", ["DRUG_ID"], name: "index_drugs_on_DRUG_ID", using: :btree
+  add_index "drugs", ["DRUG_NAME"], name: "index_drugs_on_DRUG_NAME", using: :btree
+  add_index "drugs", ["INTEGRITY_PATENT_ID"], name: "index_drugs_on_INTEGRITY_PATENT_ID", using: :btree
+  add_index "drugs", ["TARGET_NAME"], name: "index_drugs_on_TARGET_NAME", using: :btree
+  add_index "drugs", ["TR_TARGET_ID"], name: "index_drugs_on_TR_TARGET_ID", using: :btree
 
   create_table "patents", force: :cascade do |t|
-    t.integer  "TR_TARGET_ID",            limit: 20
-    t.string   "TARGET_NAME"
-    t.integer  "DRUG_ID",                 limit: 20
-    t.string   "DRUG_NAME"
-    t.integer  "INTEGRITY_PATENT_ID",     limit: 20
-    t.string   "PATENT_TITLE",            limit: 100
-    t.string   "PATENT_NUMBER"
-    t.string   "APPLICANT"
-    t.string   "INVENTOR"
+    t.integer  "TR_TARGET_ID",            limit: 4
+    t.string   "TARGET_NAME",             limit: 255
+    t.integer  "DRUG_ID",                 limit: 4
+    t.string   "DRUG_NAME",               limit: 255
+    t.integer  "INTEGRITY_PATENT_ID",     limit: 4
+    t.string   "PATENT_TITLE",            limit: 255
+    t.string   "PATENT_NUMBER",           limit: 255
+    t.string   "APPLICANT",               limit: 255
+    t.string   "INVENTOR",                limit: 255
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "PATENT_PUBLICATION_DATE"
+    t.string   "PATENT_PUBLICATION_DATE", limit: 255
   end
 
-  add_index "patents", ["DRUG_ID"], name: "index_patents_on_DRUG_ID"
-  add_index "patents", ["INTEGRITY_PATENT_ID"], name: "index_patents_on_INTEGRITY_PATENT_ID"
+  add_index "patents", ["DRUG_ID"], name: "index_patents_on_DRUG_ID", using: :btree
+  add_index "patents", ["INTEGRITY_PATENT_ID"], name: "index_patents_on_INTEGRITY_PATENT_ID", using: :btree
 
   create_table "pharmacologies", force: :cascade do |t|
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.integer  "TR_TARGET_ID",                   limit: 20
-    t.string   "TARGET_NAME"
-    t.integer  "DRUG_ID",                        limit: 20
-    t.string   "DRUG_NAME"
-    t.integer  "PHARM_RESULT_ID",                limit: 20
-    t.integer  "PHARM_EXP_ID",                   limit: 20
-    t.string   "TARGET_CONDITION_TOXICITY_TYPE"
-    t.string   "SYSTEM"
-    t.string   "CONDITION_ACTIVITY_TYPE_VALUE"
-    t.string   "EFFECT"
-    t.string   "PHARMACOLOGICAL_ACTIVITY"
-    t.string   "MATERIAL"
-    t.string   "METHOD"
-    t.string   "PARAMETER"
-    t.string   "OPERATOR"
-    t.string   "VALUE"
-    t.string   "UNIT"
-    t.string   "VARIANCE"
-    t.string   "MODEL"
-    t.string   "SOURCE_TYPE"
-    t.string   "SOURCE_TITLE"
-    t.string   "SOURCE_ID"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "TR_TARGET_ID",                   limit: 4
+    t.string   "TARGET_NAME",                    limit: 255
+    t.integer  "DRUG_ID",                        limit: 4
+    t.string   "DRUG_NAME",                      limit: 255
+    t.integer  "PHARM_RESULT_ID",                limit: 4
+    t.integer  "PHARM_EXP_ID",                   limit: 4
+    t.string   "TARGET_CONDITION_TOXICITY_TYPE", limit: 255
+    t.string   "SYSTEM",                         limit: 255
+    t.string   "CONDITION_ACTIVITY_TYPE_VALUE",  limit: 255
+    t.string   "EFFECT",                         limit: 255
+    t.string   "PHARMACOLOGICAL_ACTIVITY",       limit: 255
+    t.string   "MATERIAL",                       limit: 255
+    t.string   "METHOD",                         limit: 255
+    t.string   "PARAMETER",                      limit: 255
+    t.string   "OPERATOR",                       limit: 255
+    t.string   "VALUE",                          limit: 255
+    t.string   "UNIT",                           limit: 255
+    t.string   "VARIANCE",                       limit: 255
+    t.string   "MODEL",                          limit: 255
+    t.string   "SOURCE_TYPE",                    limit: 255
+    t.string   "SOURCE_TITLE",                   limit: 255
+    t.string   "SOURCE_ID",                      limit: 255
   end
 
-  add_index "pharmacologies", ["DRUG_ID"], name: "index_pharmacologies_on_DRUG_ID"
-  add_index "pharmacologies", ["DRUG_NAME"], name: "index_pharmacologies_on_DRUG_NAME"
-  add_index "pharmacologies", ["PHARM_RESULT_ID"], name: "index_pharmacologies_on_PHARM_RESULT_ID"
-  add_index "pharmacologies", ["TARGET_NAME"], name: "index_pharmacologies_on_TARGET_NAME"
-
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
-    t.float    "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "pharmacologies", ["DRUG_ID"], name: "index_pharmacologies_on_DRUG_ID", using: :btree
+  add_index "pharmacologies", ["DRUG_NAME"], name: "index_pharmacologies_on_DRUG_NAME", using: :btree
+  add_index "pharmacologies", ["PHARM_RESULT_ID"], name: "index_pharmacologies_on_PHARM_RESULT_ID", using: :btree
+  add_index "pharmacologies", ["TARGET_NAME"], name: "index_pharmacologies_on_TARGET_NAME", using: :btree
 
 end
