@@ -10,18 +10,19 @@ class ProductsDatatable
       sEcho: params[:sEcho].to_i,
       iTotalRecords: Product.count,
       iTotalDisplayRecords: products.total_entries,
-      aaData: data
+      aaData: data,
     }
   end
 
 private
 
   def data
+		puts "here", products
     products.map do |product|
       [
         product.name,
         product.category,
-        product.price
+        product.price,
       ]
     end
   end
@@ -31,30 +32,31 @@ private
   end
 
   def fetch_products
+		puts "fetchin..."
     products = Product.order("#{sort_column} #{sort_direction}")
     products = products.page(page).per_page(per_page)
-    if params[:sSearch].present?
-      products = products.where("name like :search or category like :search", search: "%#{params[:sSearch]}%")
+		if params[:search]["value"] != ""
+      products = products.where("name like :search or category like :search", search: "%#{params[:search]["value"]}%")
     end
     products
   end
 
   def page
-    params[:iDisplayStart].to_i/per_page + 1
+    params["start"].to_i/per_page + 1
   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+		params["length"].to_i > 0 ? params["length"].to_i : 10
   end
 
   def sort_column
-#		columns = [Drug.name, Drug.category, Drug.price]
-#		byebug
 		columns = %w[name category price]
-    columns[params[:iSortCol_0].to_i]
+#    columns[params[:iSortCol_0].to_i]
+		columns[params[:order]["0"]["column"].to_i]
   end
 
   def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
+		params[:order]["0"]["dir"]
+#    params[:sSortDir_0] == "desc" ? "desc" : "asc"
   end
 end

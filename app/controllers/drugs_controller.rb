@@ -3,6 +3,7 @@ class DrugsController < ApplicationController
 	
 	$drug_cols = [
 		"DRUG_NAME",
+		"DRUG_NAME",
 		"TARGET_NAME",
 		"HIGHEST_PHASE",
 		"PRODUCT_CATEGORY",
@@ -25,7 +26,31 @@ class DrugsController < ApplicationController
 	
 	$patent_cols = ["TR_TARGET_ID", "TARGET_NAME", "DRUG_ID", "DRUG_NAME", "INTEGRITY_PATENT_ID", "PATENT_TITLE", "PATENT_NUMBER", "PATENT_PUBLICATION", "APPLICANT", "INVENTOR"]
 	
-	$pharma_cols = ["TR_TARGET_ID", "TARGET_NAME", "DRUG_ID", "DRUG_NAME", "PHARM_RESULT_ID", "PHARM_EXP_ID", "TARGET_CONDITION_TOXICITY_TYPE", "SYSTEM", "CONDITION_ACTIVITY_TYPE_VALUE", "EFFECT", "PHARMACOLOGICAL_ACTIVITY", "MATERIAL", "METHOD", "PARAMETER", "OPERATOR", "VALUE", "UNIT", "VARIANCE", "MODEL","SOURCE_TYPE","SOURCE_TITLE","SOURCE_ID"]
+	$pharma_cols = [
+		"DRUG_NAME",
+		"DRUG_NAME", 
+		"TARGET_NAME",
+		"PHARM_RESULT_ID", 
+		"PHARM_EXP_ID", 
+		"TARGET_CONDITION_TOXICITY_TYPE", 
+		"SYSTEM", 
+		"CONDITION_ACTIVITY_TYPE_VALUE", 
+		"EFFECT", 
+		"PHARMACOLOGICAL_ACTIVITY", 
+		"MATERIAL", 
+		"METHOD", 
+		"PARAMETER", 
+		"OPERATOR", 
+		"VALUE", 
+		"UNIT", 
+		"VARIANCE", 
+		"MODEL",
+		"SOURCE_TYPE",
+		"SOURCE_TITLE",
+		"TR_TARGET_ID",
+		"SOURCE_ID",
+		"DRUG_ID"
+		]
 	
   # GET /drugs
   # GET /drugs.json
@@ -45,6 +70,14 @@ class DrugsController < ApplicationController
 			end
 		end
   end
+	
+	def index_table
+		respond_to do |format|
+			format.json { render json: DrugsDatatable.new(view_context) }
+			format.html
+		end
+	end
+		
 	
 	def import
 		Drug.import(params[:file])

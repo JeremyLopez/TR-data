@@ -34,3 +34,21 @@
         <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    
+     <% @drugs.each do |drug| %>
+      <tr>
+				<% @drug_cols.each do |col| %>
+					<% if col == "DRUG_NAME" %>
+				<td><%= link_to drug[col], drug_path(drug[:id]) %></td>
+					<% else %>
+						<td><%= drug[col] %></td>
+					<% end %>
+				<% end %>
+        <td><%= link_to 'Show', drug %></td>
+        <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
+        <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    
+   
+  

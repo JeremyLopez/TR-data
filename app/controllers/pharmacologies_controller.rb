@@ -3,7 +3,31 @@ class PharmacologiesController < ApplicationController
 
   # GET /pharmacologies
   # GET /pharmacologies.json
-	$pharma_cols = ["TR_TARGET_ID", "TARGET_NAME", "DRUG_ID", "DRUG_NAME", "PHARM_RESULT_ID", "PHARM_EXP_ID", "TARGET_CONDITION_TOXICITY_TYPE", "SYSTEM", "CONDITION_ACTIVITY_TYPE_VALUE", "EFFECT", "PHARMACOLOGICAL_ACTIVITY", "MATERIAL", "METHOD", "PARAMETER", "OPERATOR", "VALUE", "UNIT", "VARIANCE", "MODEL","SOURCE_TYPE","SOURCE_TITLE","SOURCE_ID"]
+	$pharma_cols = [
+		"DRUG_NAME",
+		"DRUG_NAME", 
+		"TARGET_NAME",
+		"PHARM_RESULT_ID", 
+		"PHARM_EXP_ID", 
+		"TARGET_CONDITION_TOXICITY_TYPE", 
+		"SYSTEM", 
+		"CONDITION_ACTIVITY_TYPE_VALUE", 
+		"EFFECT", 
+		"PHARMACOLOGICAL_ACTIVITY", 
+		"MATERIAL", 
+		"METHOD", 
+		"PARAMETER", 
+		"OPERATOR", 
+		"VALUE", 
+		"UNIT", 
+		"VARIANCE", 
+		"MODEL",
+		"SOURCE_TYPE",
+		"SOURCE_TITLE",
+		"TR_TARGET_ID",
+		"SOURCE_ID",
+		"DRUG_ID"
+		]
 	
   def index
 		@pharma_cols = $pharma_cols
@@ -14,12 +38,19 @@ class PharmacologiesController < ApplicationController
 			@pharmacologies = Pharmacology.all.paginate(page: params[:page])
 		end
 		respond_to do |format|
-			format.json { render json: @pharmacologies }
+			format.json { render json: PharmacologiesDatatable.new(view_context) }
 			format.html
 			format.csv { send_data @pharmacologies.to_csv }
 			format.xls #{ send_data @products.to_csv(col_sep: "\t") }
 		end
   end
+	
+	def index_table
+		respond_to do |format|
+			format.json { render json: PharmacologiesDatatable.new(view_context) }
+			format.html
+		end
+	end
 	
 	def import
 		Pharmacology.import(params[:file])

@@ -1,44 +1,48 @@
 <p id="notice"><%= notice %></p>
-<% columns = @drug_cols %>
+
+<div class="toggle-buttons">
+	<h3>Click to toggle column:</h3>
+	<ul class="column-selection active-columns">
+		<% @drug_cols.each_with_index do |col, index| %>
+		<li><a class="toggle-vis" id="<%= index %>" data-column="<%= index %>"><%= col %></a></li>
+	<% end %>
+	</ul>
+</div>
+
+<div class="bulk-search">
+	<h4>Bulk Search:</h4>
+	<div class="dt-buttons"><button class="dt-button buttons-html5" id="bulk-export">Export all</button></div>
+</div>
 
 
-<h1>Listing Drugs</h1>
 
-<table id="drugs" class="table table-hover table-drugs text-center datatable">
+<div class="table-container">
+	<table id="drugs" class="table table-hover table-drugs text-center" data-source="<%= drugs_url(format: "json") %>">
   <thead>
-    <tr>
+		<tr class="col-filter">
+			<% @drug_cols.each_with_index do |col, index| %>
+				<th class="text-center"><%= col %></th>
+			<% end %>
+		</tr>
+		<tr class="table-header-row">
 			<% @drug_cols.each do |col| %>
 				<th style="text-align: center"><%= col %></th>
 			<% end %>
-<!--
-     	<th style="text-align: center">TR_TARGET_ID</th>
-     	<th style="text-align: center">Target Name</th>
-     	<th style="text-align: center">DRUG_ID</th>
-     	<th style="text-align: center">Drug Name</th>
--->
-      <th style="text-align: center">Tasks</th>
-      <th style="text-align: center">Tasks</th>
-      <th style="text-align: center">Tasks</th>
     </tr>
 	</thead>
+  
 
   <tbody>
-  <% @drugs.each do |drug| %>
-      <tr>
-				<% @drug_cols.each do |col| %>
-					<% if col == "DRUG_NAME" %>
-				<td><%= link_to drug[col], drug_path(drug[:id]) %></td>
-					<% else %>
-						<td><%= drug[col] %></td>
-					<% end %>
-				<% end %>
-        <td><%= link_to 'Show', drug %></td>
-        <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
-        <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
+  
+  
 </table>
+</div>
+
+<ul class="smiles-image">
+	
+</ul>
+
 
 <h2>Import Products</h2>
 
@@ -48,3 +52,7 @@
 <% end %>
 
 <%= link_to 'New Drug', new_drug_path %>
+
+<script>
+	
+</script>

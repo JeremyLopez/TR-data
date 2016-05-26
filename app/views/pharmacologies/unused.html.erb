@@ -1,0 +1,19 @@
+<% @pharmacologies.each do |pharmacology| %>
+      <tr>
+				<% @pharma_cols.each do |col| %>
+					<td><%= pharmacology[col] %></td>
+				<% end %>
+        <td><%= link_to 'Show', pharmacology %></td>
+        <td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
+        <td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    
+   <div class="form-inline search-form text-center">
+	<div class="form-group search-group">
+		<%= form_tag(pharmacologies_path, :method => "get") do %>
+			<%= text_field_tag :search, params[:search], placeholder: "Target Name" %>
+			<%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>

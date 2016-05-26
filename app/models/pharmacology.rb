@@ -13,6 +13,16 @@ class Pharmacology < ActiveRecord::Base
 		end
 	end
 	
+	def self.results_per_page(query)
+		self.per_page = 15
+		self.per_page = query
+	end
+	
+	def self.search(query)
+		# where(:title, query) -> This would return an exact match of the query
+		where("TARGET_NAME like :query OR DRUG_NAME like :query", query: "%#{query}%") 
+	end
+	
 	def self.import(file)
 		spreadsheet = open_spreadsheet(file)
 		header = spreadsheet.row(1)

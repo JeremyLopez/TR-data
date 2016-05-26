@@ -2,6 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.bulk-search input {
+	height: 200px;
+	width: 200px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    display: none;
+}
+
+.bulk-search {
+	.dt-buttons {
+		float: right;
+		
+		.dt-button {
+			color: #fff;
+			background-color: #337ab7;
+			border-color: #2e6da4;
+			background-image: none;
+			
+			&:hover {
+				background-color: #286090 !important;
+    		border-color: #204d74;
+				background-image: none;
+			}
+		}
+	}
+}
+
 .full-width {
 	width: 100%;
 }
@@ -47,6 +77,16 @@ th[data-sorted-direction="ascending"] {
 	color: green;
 }
 
+.remove-col {
+	color: red;
+}
+
+a {
+	cursor: pointer;
+	
+	&:hover { background-color: white !important; }
+	&:visited { color: #337ab7 !important }
+}
 
 
 
@@ -61,3 +101,45 @@ th[data-sorted-direction="ascending"] {
 //	border-bottom: 1px solid #ddd;
 //	border-radius: 0 0 .5em .5em;
 }
+
+.column-selection {
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+	column-count: 2;
+	column-gap: 20px;
+	height: 10em;
+	width: 50em;
+}
+
+.toggle-buttons {
+	height: 14em;
+}
+
+tbody {
+	tr {
+		td {
+			height: 25px;
+//			max-width: 50px;
+			white-space: nowrap;
+		}
+	}
+}
+
+#drugs {
+//	margin-left: 10%;
+//	display: inline;
+}
+
+//.smiles-image {
+//	padding-left: 0;
+//	width: 10%;
+//	display: inline;
+//	position: absolute;
+//	margin-left: 0;
+//	
+//	img {
+//		width: 100%;
+//	}
+//}

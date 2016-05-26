@@ -15,3 +15,6 @@
 //= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
+//= require tether
+//= require tether-drop
+

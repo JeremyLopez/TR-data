@@ -4,6 +4,11 @@
 	<h1><%= @drug[:DRUG_NAME] %> <small><%= @drug[:TARGET_NAME] %></small></h1>
 </div>
 
+<ol class="breadcrumb">
+	<li><%= link_to 'Drug Database', drugs_path %></li>
+	<li class="active"><%= @drug.DRUG_NAME %></li>
+</ol>
+
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" id="myTabs" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Information</a></li>
 	<li role="presentation" id="myTabs"><a href="#experiments" aria-controls="experiments" role="tab" data-toggle="tab">Target Pharmacology</a></li>
@@ -19,16 +24,28 @@
 			<% end %>
 		</div>
 	</div>
+	
 	<div role="tabpanel" class="tab-pane" id="experiments">
-		<table class="table table-pharma table-hover text-center">
+		<div class="toggle-buttons">
+			<h3>Click to toggle column:</h3>
+			<ul class="column-selection active-columns">
+				<% @pharma_cols.each_with_index do |col, index| %>
+				<li><a class="show-toggle-vis" id="<%= index %>" data-column="<%= index %>"><%= col %></a></li>
+			<% end %>
+			</ul>
+		</div>
+	
+		<table class="table table-pharma table-hover text-center" id="drug-pharma">
 			<thead>
-				<tr>
+				<tr class="drug_pharma_filter">
 					<% @pharma_cols.each do |col| %>
 						<th style="text-align: center"><%= col %></th>
 					<% end %>
-					<th style="text-align: center">Tasks</th>
-					<th style="text-align: center">Tasks</th>
-					<th style="text-align: center">Tasks</th>
+				</tr>
+				<tr class="table-header-row">
+					<% @pharma_cols.each do |col| %>
+						<th style="text-align: center"><%= col %></th>
+					<% end %>
 				</tr>
 			</thead>
 
@@ -38,13 +55,11 @@
 						<% @pharma_cols.each do |col| %>
 							<td><%= pharmacology[col] %></td>
 						<% end %>
-						<td><%= link_to 'Show', pharmacology %></td>
-						<td><%= link_to 'Edit', edit_pharmacology_path(pharmacology) %></td>
-						<td><%= link_to 'Destroy', pharmacology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
+		
 	</div>
 	<div role="tabpanel" class="tab-pane" id="conditional-pharma">
 		<table class="table table-pharma table-hover text-center">
