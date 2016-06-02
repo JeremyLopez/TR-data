@@ -17,7 +17,7 @@
 
 
 <div class="table-container">
-	<table id="drugs" class="table table-hover table-drugs text-center" data-source="<%= drugs_url(format: "json") %>">
+	<table id="drugs" class="table table-hover table-striped table-drugs" data-source="<%= drugs_url(format: "json") %>">
   <thead>
 		<tr class="col-filter">
 			<% @drug_cols.each_with_index do |col, index| %>

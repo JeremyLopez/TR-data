@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407143649) do
+ActiveRecord::Schema.define(version: 20160602192838) do
 
   create_table "cond_pharmas", force: :cascade do |t|
     t.datetime "created_at",                                 null: false
@@ -46,34 +46,28 @@ ActiveRecord::Schema.define(version: 20160407143649) do
   add_index "cond_pharmas", ["TARGET_NAME"], name: "index_cond_pharmas_on_TARGET_NAME", using: :btree
 
   create_table "drugs", force: :cascade do |t|
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "TR_TARGET_ID",             limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "DRUG_ID",                  limit: 4
-    t.integer  "INTEGRITY_PATENT_ID",      limit: 4
     t.string   "TARGET_NAME",              limit: 255
-    t.string   "DRUG_NAME",                limit: 255
     t.string   "PRODUCT_CATEGORY",         limit: 255
-    t.string   "MOLECULAR_MECHANISM",      limit: 255
-    t.string   "CELLULAR_MECHANISM",       limit: 255
+    t.string   "MOLECULAR_MECHANISM",      limit: 1000
+    t.string   "CELLULAR_MECHANISM",       limit: 1000
     t.string   "UNDER_ACTIVE_DEVELOPMENT", limit: 255
     t.string   "HIGHEST_PHASE",            limit: 255
-    t.string   "INACTIVE_CONDITIONS",      limit: 255
-    t.string   "ORIGINATOR_ORGANIZATION",  limit: 255
-    t.string   "INACTIVE_ORGANIZATION",    limit: 255
-    t.string   "ACTIVE_CONDITIONS",        limit: 255
-    t.string   "SMILES",                   limit: 255
+    t.string   "SMILES",                   limit: 400
     t.string   "SEQUENCE",                 limit: 255
-    t.string   "CAS_NUMBER",               limit: 255
-    t.string   "CORTELLIS_ID",             limit: 255
-    t.string   "ACTIVE_ORGANIZATION",      limit: 255
+    t.integer  "TARGET_ID",                limit: 4
+    t.string   "OTHER_ORGANIZATIONS",      limit: 1000
+    t.string   "CAS_NO",                   limit: 255
+    t.string   "CONDITIONS",               limit: 255
+    t.string   "DRUG_OR_CHEMICAL_NAME",    limit: 255
+    t.string   "LEAD_COMPOUND",            limit: 255
+    t.string   "ORIGINATOR_ORGANIZATIONS", limit: 255
   end
 
   add_index "drugs", ["DRUG_ID"], name: "index_drugs_on_DRUG_ID", using: :btree
-  add_index "drugs", ["DRUG_NAME"], name: "index_drugs_on_DRUG_NAME", using: :btree
-  add_index "drugs", ["INTEGRITY_PATENT_ID"], name: "index_drugs_on_INTEGRITY_PATENT_ID", using: :btree
   add_index "drugs", ["TARGET_NAME"], name: "index_drugs_on_TARGET_NAME", using: :btree
-  add_index "drugs", ["TR_TARGET_ID"], name: "index_drugs_on_TR_TARGET_ID", using: :btree
 
   create_table "patents", force: :cascade do |t|
     t.integer  "TR_TARGET_ID",            limit: 4

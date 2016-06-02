@@ -1,26 +1,23 @@
 class DrugsDatatable
-  delegate :params, :link_to, :number_to_currency, to: :@view
+	delegate :params, :link_to, :number_to_currency, :drug_path, to: :@view
 
 	$drug_cols = [
-		"DRUG_NAME",
-		"DRUG_NAME",
+		"ID",
+		"DRUG_OR_CHEMICAL_NAME",
 		"TARGET_NAME",
 		"HIGHEST_PHASE",
+		"LEAD_COMPOUND",
 		"PRODUCT_CATEGORY",
 		"MOLECULAR_MECHANISM",
 		"CELLULAR_MECHANISM",
 		"UNDER_ACTIVE_DEVELOPMENT",
 		"SMILES",
-		"ACTIVE_CONDITIONS",
-		"INACTIVE_CONDITIONS",
-		"ORIGINATOR_ORGANIZATION",
-		"ACTIVE_ORGANIZATION",
-		"INACTIVE_ORGANIZATION",
+		"CONDITIONS",
+		"ORIGINATOR_ORGANIZATIONS",
+		"OTHER_ORGANIZATIONS",
 		"SEQUENCE",
-		"CAS_NUMBER",
-		"CORTELLIS_ID",
-		"INTEGRITY_PATENT_ID",
-		"TR_TARGET_ID",
+		"CAS_NO",
+		"TARGET_ID",
 		"DRUG_ID"
 	]
 	
@@ -44,24 +41,21 @@ private
   def data
 		drugs.map do |drug|
       [	drug.id,
-				drug.DRUG_NAME,
+				drug.DRUG_OR_CHEMICAL_NAME,
 				drug.TARGET_NAME,
 				drug.HIGHEST_PHASE,
+				drug.LEAD_COMPOUND,
 				drug.PRODUCT_CATEGORY,
 				drug.MOLECULAR_MECHANISM,
 				drug.CELLULAR_MECHANISM,
 				drug.UNDER_ACTIVE_DEVELOPMENT,
 				drug.SMILES,
-				drug.ACTIVE_CONDITIONS,
-				drug.INACTIVE_CONDITIONS,
-				drug.ORIGINATOR_ORGANIZATION,
-				drug.ACTIVE_ORGANIZATION,
-				drug.INACTIVE_ORGANIZATION,
+				drug.CONDITIONS,
+				drug.ORIGINATOR_ORGANIZATIONS,
+				drug.OTHER_ORGANIZATIONS,
 				drug.SEQUENCE,
-				drug.CAS_NUMBER,
-				drug.CORTELLIS_ID,
-				drug.INTEGRITY_PATENT_ID,
-				drug.TR_TARGET_ID,
+				drug.CAS_NO,
+				drug.TARGET_ID,
 				drug.DRUG_ID
       ]
     end
@@ -80,7 +74,7 @@ private
 		drugs = drugs.page(page).per_page(per_page)
     if params[:search]["value"] != ""
 			puts "Global search:", params[:search]["value"]
-			drugs = drugs.where("DRUG_NAME like :search or TARGET_NAME like :search or DRUG_ID like :search or ACTIVE_ORGANIZATION like :search or INACTIVE_ORGANIZATION like :search or HIGHEST_PHASE like :search", search: "%#{params[:search]["value"]}%")
+			drugs = drugs.where("DRUG_OR_CHEMICAL_NAME like :search or TARGET_NAME like :search or DRUG_ID like :search or HIGHEST_PHASE like :search", search: "%#{params[:search]["value"]}%")
     end
 		filter_now(drugs)
   end

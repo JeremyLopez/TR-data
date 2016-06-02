@@ -169,36 +169,36 @@ $(document).on("page:change", function() {
 		"autoWidth": false,
 		"Processing": true,
     "serverSide": true,
+		"scrollX": true,
 		"dom": "Blfrtip",
     "ajax": {
 			url : $('#drugs').data('source'),
 			type: "post"
 		},
-		"columnDefs": [{
-			"targets": 0,
-			"data": 'link',
-			"render": function(data, type, full, meta) {
-				return '<a href="/drugs/'+full[0]+'">'+full[1]+'</a>';
-			}	
-		}, {
-			"targets": 1,
-			"visible": false
-		}, {
-			"targets": 8,
-			className: "smiles-for-images"
-//			"render": function(data, type, full, meta) {
-//				var content = full[8]
-//				var link = "http://cactus.nci.nih.gov/chemical/structure/" + content + "/image"
-//				var complete = "<img src=" + link + ">";
-//				return complete;
+//		"columnDefs": [
+////			{
+////				"targets": 0,
+////				"data": 'link',
+////				"render": function(data, type, full, meta) {
+////					return '<a href="/drugs/'+full[0]+'">'+full[1]+'</a>';
+////				}	
+////			}, 
+////			{
+////				"targets": 1,
+////				"visible": false
+////			}, 
+//			{
+//				"targets": 8,
+//				className: "smiles-for-images"
+//			}, 
+//			{
+//				"targets": -2,
+//				"data": 'link',
+//				"render": function (data, type, full) {
+//					return "<button type='button' class='btn btn-lg btn-danger' data-container='body' id='test-popover' data-toggle='popover' data-placement='top' title='Popover title' data-content='And heres some amazing content. Its very engaging. Right?'>Click to toggle popover</button>";
+//				}
 //			}
-		}, {
-			"targets": -2,
-		  "data": 'link',
-			"render": function (data, type, full) {
-            return "<button type='button' class='btn btn-lg btn-danger' data-container='body' id='test-popover' data-toggle='popover' data-placement='top' title='Popover title' data-content='And heres some amazing content. Its very engaging. Right?'>Click to toggle popover</button>";
-        }
-		}],
+//		],
 		buttons: [
 			'copy', 'csv', 'excel', 'pdf'
 		],
@@ -242,7 +242,20 @@ $(document).on("page:change", function() {
 			.draw();
 	});
 	
-	var exclude = [".toggle-vis#4", ".toggle-vis#5", ".toggle-vis#6", ".toggle-vis#9", ".toggle-vis#10", ".toggle-vis#14", ".toggle-vis#15", ".toggle-vis#16", ".toggle-vis#17", ".toggle-vis#18", ".toggle-vis#19"]
+	var exclude = [
+		".toggle-vis#0",
+		".toggle-vis#5",
+		".toggle-vis#6",
+		".toggle-vis#7",
+		".toggle-vis#9",
+		".toggle-vis#12",
+		".toggle-vis#13",
+		".toggle-vis#14",
+		".toggle-vis#15",
+		".toggle-vis#16"
+	]
+	
+//	var exclude = [".toggle-vis#4", ".toggle-vis#5", ".toggle-vis#6", ".toggle-vis#9", ".toggle-vis#10", ".toggle-vis#14", ".toggle-vis#15", ".toggle-vis#16", ".toggle-vis#17", ".toggle-vis#18", ".toggle-vis#19"]
 	
 	for ( i=0; i < exclude.length; i++ ) {
 		var column = table.column( $(exclude[i]).attr('data-column'))
